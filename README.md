@@ -3,7 +3,8 @@
 Testable, accessible, responsive profile card component.
 
 ## Live Demo
-[Your deployed URL: ]
+[Github URL: https://github.com/Camerlia/Profile-Card]
+[Deployed URL: https://starprofilecard.netlify.app/ ]
 
 ## Local Setup
 1. Clone repository

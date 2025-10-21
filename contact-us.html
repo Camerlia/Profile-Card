@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #aa67a1 0%, #f8a3cb 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            line-height: 1.6;
+        }
+
+        
+        .main-nav {
+            background: rgba(244, 225, 225, 0.95);
+           
+            border-radius: 16px;
+            
+            max-width: 1000px;
+            margin: 0 auto 1.5rem;
+            padding: 1rem 1.5rem;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .nav-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #602157;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-brand:hover,
+        .nav-brand:focus {
+            color: #aa67a1;
+            outline: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.5rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            color: #602157;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus {
+            background: #aa67a1;
+            color: white;
+            transform: translateY(-2px);
+            outline: none;
+        }
+
+
+        .contact-container {
+            background: rgb(244, 225, 225);
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .contact-content {
+            padding: 3rem 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .contact-content {
+                padding: 4rem 3rem;
+            }
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            border-bottom: 2px solid #aa67a1;
+            padding-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #602157;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: #824379;
+            font-size: 1.1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            color: #602157;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .required {
+            color: #aa67a1;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 0.875rem;
+            border: 2px solid #d4a5ce;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            background: white;
+            color: #602157;
+            transition: all 0.3s;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #aa67a1;
+            box-shadow: 0 0 0 3px rgba(170, 103, 161, 0.1);
+        }
+
+        input:invalid:not(:placeholder-shown),
+        textarea:invalid:not(:placeholder-shown) {
+            border-color: #e74c3c;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .error-message {
+            color: #c0392b;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            display: none;
+            padding: 0.5rem;
+            background: #fadbd8;
+            border-radius: 4px;
+            border-left: 3px solid #e74c3c;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem 2rem;
+            background: #aa67a1;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            background: #824379;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(170, 103, 161, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .submit-btn:focus {
+            outline: 3px solid #602157;
+            outline-offset: 2px;
+        }
+
+        .submit-btn:disabled {
+            background: #d4a5ce;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .success-message {
+            display: none;
+            background: #d4edda;
+            color: #155724;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #28a745;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .success-message h2 {
+            color: #155724;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .success-message p {
+            color: #155724;
+            font-size: 1rem;
+        }
+
+        /* Accessibility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+        :focus-visible {
+            outline: 3px solid #aa67a1;
+            outline-offset: 2px;
+        }
+
+        /* Character counter */
+        .char-counter {
+            text-align: right;
+            font-size: 0.875rem;
+            color: #824379;
+            margin-top: 0.25rem;
+        }
+
+        .char-counter.warning {
+            color: #e74c3c;
+        }
+
+    </style>
+</head>
+
+<body>
+ 
+    <main class="contact-container">
+           <nav class="main-nav" role="navigation" aria-label="Main navigation">
+        <div class="nav-content">
+            <a href="index.html" class="nav-brand">Camelia</a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact-us.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+        <div class="contact-content">
+            <header>
+                <h1>Get in Touch</h1>
+                <p class="subtitle">I would to love to hear from you</p>
+            </header>
+
+            <div data-testid="test-contact-success" class="success-message" role="alert" aria-live="polite">
+                <h2>Thank You</h2>
+                <p>Your message has been sent successfully. We'll get back to you soon.</p>
+            </div>
+
+            <form id="contactForm" novalidate>
+                <div class="form-group">
+                    <label for="fullName">
+                        Full Name <span class="required" aria-label="required">*</span>
+                    </label>
+                    <input type="text" id="fullName" data-testid="test-contact-name" placeholder="Enter your full name"
+                        required aria-required="true" aria-describedby="error-name">
+                    <div id="error-name" data-testid="test-contact-error-name" class="error-message" role="alert">
+                        Please enter your full name
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">
+                        Email Address <span class="required" aria-label="required">*</span>
+                    </label>
+                    <input type="email" id="email" data-testid="test-contact-email" placeholder="name@example.com"
+                        required aria-required="true" aria-describedby="error-email">
+                    <div id="error-email" data-testid="test-contact-error-email" class="error-message" role="alert">
+                        Please enter a valid email address.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">
+                        Subject <span class="required" aria-label="required">*</span>
+                    </label>
+                    <input type="text" id="subject" data-testid="test-contact-subject"
+                        placeholder="Message" required aria-required="true"
+                        aria-describedby="error-subject">
+                    <div id="error-subject" data-testid="test-contact-error-subject" class="error-message" role="alert">
+                        Please enter your Message.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">
+                        Message <span class="required" aria-label="required">*</span>
+                    </label>
+                    <textarea id="message" data-testid="test-contact-message"
+                        placeholder="Tell me more..." required aria-required="true"
+                        aria-describedby="error-message char-count"></textarea>
+                    <div id="char-count" class="char-counter">
+                        <span id="charCount">0</span> / 300 characters minimum
+                    </div>
+                    <div id="error-message" data-testid="test-contact-error-message" class="error-message" role="alert">
+                        Message must be at least 10 characters long.
+                    </div>
+                </div>
+
+                <button type="submit" data-testid="test-contact-submit" class="submit-btn">
+                    Send Message
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        const form = document.getElementById('contactForm');
+        const nameInput = document.getElementById('fullName');
+        const emailInput = document.getElementById('email');
+        const subjectInput = document.getElementById('subject');
+        const messageInput = document.getElementById('message');
+        const successMessage = document.querySelector('[data-testid="test-contact-success"]');
+        const charCountSpan = document.getElementById('charCount');
+        const charCounter = document.getElementById('char-count');
+
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+
+        messageInput.addEventListener('input', function () {
+            const length = this.value.length;
+            charCountSpan.textContent = length;
+
+            if (length < 300) {
+                charCounter.classList.add('warning');
+            } else {
+                charCounter.classList.remove('warning');
+            }
+        });
+
+        function validateField(input, errorElement, validationFn) {
+            input.addEventListener('blur', function () {
+                if (!validationFn(this.value)) {
+                    errorElement.classList.add('show');
+                    input.setAttribute('aria-invalid', 'true');
+                } else {
+                    errorElement.classList.remove('show');
+                    input.setAttribute('aria-invalid', 'false');
+                }
+            });
+
+            input.addEventListener('input', function () {
+                if (errorElement.classList.contains('show') && validationFn(this.value)) {
+                    errorElement.classList.remove('show');
+                    input.setAttribute('aria-invalid', 'false');
+                }
+            });
+        }
+
+
+        const isNotEmpty = (value) => value.trim() !== '';
+        const isValidEmail = (value) => emailRegex.test(value.trim());
+        const isMinLength = (value) => value.trim().length >= 10;
+
+
+        validateField(
+            nameInput,
+            document.getElementById('error-name'),
+            isNotEmpty
+        );
+
+        validateField(
+            emailInput,
+            document.getElementById('error-email'),
+            isValidEmail
+        );
+
+        validateField(
+            subjectInput,
+            document.getElementById('error-subject'),
+            isNotEmpty
+        );
+
+        validateField(
+            messageInput,
+            document.getElementById('error-message'),
+            isMinLength
+        );
+
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+
+            const errorElements = {
+                name: document.getElementById('error-name'),
+                email: document.getElementById('error-email'),
+                subject: document.getElementById('error-subject'),
+                message: document.getElementById('error-message')
+            };
+
+
+            const validations = {
+                name: isNotEmpty(nameInput.value),
+                email: isValidEmail(emailInput.value),
+                subject: isNotEmpty(subjectInput.value),
+                message: isMinLength(messageInput.value)
+            };
+
+
+            let isValid = true;
+            for (const [field, valid] of Object.entries(validations)) {
+                if (!valid) {
+                    errorElements[field].classList.add('show');
+                    const input = document.getElementById(field === 'name' ? 'fullName' : field);
+                    input.setAttribute('aria-invalid', 'true');
+                    isValid = false;
+                } else {
+                    errorElements[field].classList.remove('show');
+                    const input = document.getElementById(field === 'name' ? 'fullName' : field);
+                    input.setAttribute('aria-invalid', 'false');
+                }
+            }
+
+
+            if (isValid) {
+
+                successMessage.classList.add('show');
+                successMessage.focus();
+
+
+                form.reset();
+                charCountSpan.textContent = '0';
+                charCounter.classList.add('warning');
+
+
+                successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+
+                setTimeout(() => {
+                    successMessage.classList.remove('show');
+                }, 5000);
+            } else {
+
+                const firstInvalidField = ['fullName', 'email', 'subject', 'message']
+                    .find(field => !validations[field === 'fullName' ? 'name' : field]);
+                if (firstInvalidField) {
+                    document.getElementById(firstInvalidField).focus();
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

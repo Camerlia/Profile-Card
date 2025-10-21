@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #aa67a1 0%, #f8a3cb 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            line-height: 1.6;
+        }
+
+        
+        .main-nav {
+            background: rgba(244, 225, 225, 0.95);
+           
+            border-radius: 16px;
+            max-width: 1000px;
+            margin: 0 auto 1.5rem;
+            padding: 1rem 1.5rem;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .nav-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #602157;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-brand:hover,
+        .nav-brand:focus {
+            color: #aa67a1;
+            outline: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.5rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            color: #602157;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus {
+            background: #aa67a1;
+            color: white;
+            transform: translateY(-2px);
+            outline: none;
+        }
+
+        
+
+        main[data-testid="test-about-page"] {
+            background: rgb(244, 225, 225);
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 1200px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .about-content {
+            display: grid;
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .about-content {
+                grid-template-columns: 250px 1fr;
+                padding: 3rem;
+            }
+        }
+
+        /* Sidebar section */
+        .sidebar-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .profile-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 2px solid #aa67a1;
+        }
+
+        .profile-card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #aa67a1;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .profile-card h1 {
+            font-size: 1.5rem;
+            color: #602157;
+            text-align: center;
+        }
+
+        .quick-nav {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 12px;
+        }
+
+        .quick-nav h2 {
+            font-size: 1.1rem;
+            color: #aa67a1;
+            margin-bottom: 1rem;
+        }
+
+        .quick-nav ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .quick-nav a {
+            color: #500946;
+            text-decoration: none;
+            padding: 0.5rem;
+            border-radius: 6px;
+            transition: all 0.3s;
+            display: block;
+        }
+
+        .quick-nav a:hover,
+        .quick-nav a:focus {
+            background: #aa67a1;
+            color: white;
+            outline: none;
+        }
+
+        /* Main content section */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        section {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid #aa67a1;
+        }
+
+        section h2 {
+            font-size: 1.5rem;
+            color: #aa67a1;
+            margin-bottom: 1rem;
+        }
+
+        section h3 {
+            font-size: 1.2rem;
+            color: #602157;
+            margin-top: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        section p {
+            color: #500946;
+            margin-bottom: 1rem;
+        }
+
+        section p:last-child {
+            margin-bottom: 0;
+        }
+
+        section ul {
+            list-style: circle;
+            margin-left: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        section ul li {
+            color: #500946;
+            padding-left: 0.5rem;
+        }
+
+        section ul li strong {
+            color: #602157;
+        }
+
+        .highlight-box {
+            background: #e1b3db;
+            border: 2px  #aa67a1;
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+        }
+
+        .quote {
+            background: white;
+            border-left: 4px solid #aa67a1;
+            padding: 1.25rem;
+            border-radius: 8px;
+            font-style: italic;
+            color: #602157;
+        }
+
+        .quote p {
+            margin-bottom: 0.75rem;
+        }
+
+        .quote p:last-child {
+            margin-bottom: 0;
+        }
+
+        :focus-visible {
+            outline: 3px solid #aa67a1;
+            outline-offset: 2px;
+        }
+
+        @media (max-width: 767px) {
+            .about-content {
+                padding: 1.5rem;
+            }
+
+            .profile-card img {
+                width: 120px;
+                height: 120px;
+            }
+
+            section {
+                padding: 1.25rem;
+            }
+
+            section h2 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+      
+    <main data-testid="test-about-page">
+         <nav class="main-nav" role="navigation" aria-label="Main navigation">
+        <div class="nav-content">
+            <a href="index.html" class="nav-brand">Camelia</a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact-us.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+        <div class="about-content">
+            <!-- Sidebar Section -->
+            <aside class="sidebar-section">
+                <div class="profile-card">
+                    <img 
+                        src="./public/camelia_afolabi.png"
+                        alt="Profile picture of Camelia"
+                    >
+                    <h1>Camelia Afolabi</h1>
+                </div>
+
+                <nav class="quick-nav" aria-label="Quick navigation">
+                    <h2>Quick Links</h2>
+                    <ul>
+                        <li><a href="#bio">My Story</a></li>
+                        <li><a href="#goals">Program Goals</a></li>
+                        <li><a href="#confidence">Building Confidence</a></li>
+                        <li><a href="#future">Future Self</a></li>
+                        <li><a href="#extra">More Thoughts</a></li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <section data-testid="test-about-bio" id="bio">
+                    <h2>My Story</h2>
+                    <p>
+                        Hello I'm Camelia, a frontend developer with a deep passion for creating beautiful, 
+                        accessible, and performant web experiences. My journey into tech began with curiosity 
+                        and has evolved into a genuine love for problem-solving and building things that make 
+                        a difference in people's lives.
+                    </p>
+                    <p>
+                        I believe that great software is not just about writing code—it's about understanding 
+                        users, empathizing with their needs, and crafting solutions that are both elegant and 
+                        practical. Every line of code is an opportunity to make someone's day a little better, 
+                        and that drives me to continuously improve my craft.
+                    </p>
+                    <p>
+                        Beyond coding, I'm an advocate for open-source software and knowledge sharing. I believe 
+                        the best way to grow is to learn in public, share what you know, and help others along 
+                        their journey. The developer community has given me so much, and I'm committed to giving back.
+                    </p>
+                </section>
+
+                <section data-testid="test-about-goals" id="goals">
+                    <h2>My Goals in This Program</h2>
+                    <p>
+                        Enrolling in this program is a significant step in my professional development. 
+                        Here's what I hope to achieve:
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>Master modern web development practices:</strong> Deepen my understanding 
+                            of advanced JavaScript, frameworks, and architectural patterns that power 
+                            today's most successful web applications.
+                        </li>
+                        <li>
+                            <strong>Build production-ready applications:</strong> Move beyond tutorials and 
+                            create real-world projects that demonstrate my ability to solve complex problems 
+                            and deliver value to users.
+                        </li>
+                        <li>
+                            <strong>Develop a strong portfolio:</strong> Showcase my skills through diverse 
+                            projects that highlight my technical abilities, creativity, and attention to detail.
+                        </li>
+                        <li>
+                            <strong>Network with fellow developers:</strong> Connect with like-minded individuals, 
+                            learn from their experiences, and build relationships that will last beyond this program.
+                        </li>
+                        <li>
+                            <strong>Contribute to open source:</strong> Use the skills I gain to make meaningful 
+                            contributions to open-source projects and help improve tools that developers rely on daily.
+                        </li>
+                    </ul>
+                </section>
+
+                <section data-testid="test-about-confidence" id="confidence">
+                    <h2>Areas Where I'm Building Confidence</h2>
+                    <p>
+                        Growth requires honesty about our challenges. Here are areas where I'm actively 
+                        working to build my confidence:
+                    </p>
+                    
+
+                    <h3>System Design & Scalability</h3>
+                    <p>
+                        Designing systems that scale efficiently and handle large amounts of data is 
+                        something I find challenging. I'm eager to learn more about performance optimization, 
+                        caching strategies, and building resilient systems.
+                    </p>
+
+                    <h3>Testing Strategies</h3>
+                    <p>
+                        I understand the importance of testing, but I sometimes struggle with knowing 
+                        what to test, how much to test, and which testing approaches are most effective 
+                        for different scenarios. I want to develop confidence in writing comprehensive 
+                        test suites.
+                    </p>
+
+                    <h3>Speaking Up in Technical Discussions</h3>
+                    <p>
+                        Sometimes I hesitate to share my ideas in group settings, worried they might not 
+                        be valuable. I'm working on building the confidence to contribute more actively 
+                        and trust that my perspective has merit.
+                    </p>
+
+                    <div class="highlight-box">
+                        <p>
+                            <strong>My Commitment:</strong> I'm approaching these challenges not as weaknesses, 
+                            but as opportunities for growth. Every expert was once a beginner, and I'm excited 
+                            to embrace the discomfort of learning something new.
+                        </p>
+                    </div>
+                </section>
+
+                <section data-testid="test-about-future-note" id="future">
+                    <h2>A Note to My Future Self</h2>
+                    <div class="quote">
+                        <p>
+                            Dear Future Camelia,
+                        </p>
+                        <p>
+                            If you're reading this, you've come a long way. Remember when you felt uncertain 
+                            about whether you belonged in tech? Look at you now—you've pushed through the 
+                            challenges, learned from failures, and celebrated the victories.
+                        </p>
+                        <p>
+                            Don't forget the excitement you felt when you first made a webpage come to life, 
+                            or the satisfaction of solving a problem that seemed impossible. Hold onto that 
+                            curiosity and wonder. Technology will change, frameworks will evolve, but your 
+                            passion for creating and learning should remain constant.
+                        </p>
+                        <p>
+                            Be kind to yourself when things get difficult. 
+                        </p>
+                        <p>
+                            You've got this.
+                        </p>
+                    </div>
+                </section>
+
+                <section data-testid="test-about-extra" id="extra">
+                    <h2>Additional Thoughts</h2>
+                    
+                    <h3>What Motivates Me</h3>
+                    <p>
+                        I'm motivated by impact. Knowing that something I built helps someone be more 
+                        productive, brings them joy, or solves a real problem gives me immense satisfaction. 
+                        I also find motivation in the developer community—seeing others share their knowledge 
+                        freely inspires me to do the same.
+                    </p>
+
+                    <h3>My Learning Philosophy</h3>
+                    <p>
+                        I believe in learning by doing. Theory is important, but nothing beats the experience 
+                        of building something, breaking it, and fixing it. I also think it's crucial to teach 
+                        what you learn—explaining concepts to others solidifies your own understanding and 
+                        helps you identify gaps in your knowledge.
+                    </p>
+
+                    <h3>Work-Life Balance</h3>
+                    <p>
+                        While I'm passionate about coding, I also recognize the importance of stepping away 
+                        from the screen. Photography helps me see the world differently, hiking clears my mind, 
+                        and spending time with friends and family keeps me grounded. A well-rounded life makes 
+                        me a better developer.
+                    </p>
+
+                    <h3>Looking Ahead</h3>
+                    <p>
+                        Five years from now, I see myself as a senior developer who not only writes great code 
+                        but also mentors others and contributes to shaping the culture of the teams I work with. 
+                        I want to be someone who makes others feel welcome in tech, especially those who might 
+                        feel like they don't belong.
+                    </p>
+                </section>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
